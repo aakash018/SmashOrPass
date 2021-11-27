@@ -3,12 +3,19 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import girl from '../assets/girls/roshikaniraula.jpg';
+interface Props {
+  img: any;
+  name: string;
+  tiktokID: string;
+  votes: number;
+}
 
-const LeaderBoardTopGirl: React.FC = () => {
+const LeaderBoardTopGirl: React.FC<Props> = ({img, name, votes, tiktokID}) => {
   return (
     <View style={styles.mostVoatedContainer}>
-      <Image source={girl} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image source={img} style={styles.image} />
+      </View>
       <LinearGradient
         colors={[
           'rgba(101, 101, 101, 0)',
@@ -17,11 +24,11 @@ const LeaderBoardTopGirl: React.FC = () => {
         ]}
         style={styles.info}>
         <View>
-          <Text style={styles.text}>Roshika Niraula</Text>
-          <Text style={styles.textTiktokID}>@roshika_niraula</Text>
+          <Text style={styles.text}>{name}</Text>
+          <Text style={styles.textTiktokID}>{tiktokID}</Text>
         </View>
         <View>
-          <Text style={styles.textVotes}>420</Text>
+          <Text style={styles.textVotes}>{votes}</Text>
         </View>
       </LinearGradient>
     </View>
@@ -37,6 +44,10 @@ const styles = StyleSheet.create({
   },
   mostVoatedContainer: {
     position: 'relative',
+  },
+  imageContainer: {
+    width: '100%',
+    height: 250,
   },
   image: {
     width: '100%',
