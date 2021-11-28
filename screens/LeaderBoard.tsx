@@ -42,13 +42,18 @@ const LeaderBoard: React.FC = () => {
 
       <View style={styles.leaderBoardContainer}>
         {leaderboard.length !== 0 &&
-          leaderboard.map((profile, i) => (
-            <LeaderBoardNameHolder
-              index={i}
-              name={`@${profile.tiktokID}`}
-              votes={profile.votes}
-            />
-          ))}
+          leaderboard.map((profile, i) => {
+            if (i === 0) return;
+            else
+              return (
+                <LeaderBoardNameHolder
+                  key={i}
+                  index={i + 1}
+                  name={`@${profile.tiktokID}`}
+                  votes={profile.votes}
+                />
+              );
+          })}
       </View>
     </View>
   );
